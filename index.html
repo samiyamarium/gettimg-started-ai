@@ -2,29 +2,28 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Agent Factory – Getting Started Learning Portal</title>
+<title>Agent Factory – Getting Started Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
     margin:0;
     font-family:Segoe UI;
-    background:linear-gradient(135deg,#ffe4f1,#f5f5f5);
-    color:#2b2b2b;
+    background:linear-gradient(135deg,#ffe4f1,#f7f7f7);
+    color:#222;
 }
 
 /* HEADER */
 header{
     background:linear-gradient(135deg,#ffb6d5,#c0c0c0);
-    color:#222;
     padding:35px;
     text-align:center;
 }
 
-/* CONTAINER */
+/* LAYOUT */
 .container{
-    width:90%;
-    max-width:1100px;
+    width:92%;
+    max-width:1200px;
     margin:auto;
     padding:20px;
 }
@@ -32,56 +31,50 @@ header{
 /* THEORY GRID */
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:15px;
 }
 
 .card{
     background:rgba(255,255,255,0.85);
-    backdrop-filter:blur(10px);
     border:1px solid #ddd;
     border-radius:14px;
     padding:15px;
     cursor:pointer;
-    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    box-shadow:0 8px 18px rgba(0,0,0,0.08);
     transition:0.25s;
 }
-
-.card:hover{
-    transform:scale(1.04);
-}
+.card:hover{transform:scale(1.03);}
 
 /* MODAL */
 .modal{
     display:none;
     position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.5);
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.55);
     justify-content:center;
     align-items:center;
 }
 
 .modal-content{
     background:white;
-    padding:25px;
-    width:70%;
-    border-radius:16px;
+    width:75%;
     max-height:80vh;
     overflow:auto;
+    padding:25px;
+    border-radius:15px;
 }
 
 .close{
     float:right;
     cursor:pointer;
-    font-size:20px;
+    font-size:22px;
 }
 
 /* QUIZ */
 .question{
-    background:rgba(255,255,255,0.9);
+    background:white;
     padding:15px;
     margin:10px 0;
     border-left:5px solid #ff69b4;
@@ -99,11 +92,11 @@ button{
 }
 
 .result{
-    background:#fff0f6;
-    padding:15px;
     margin-top:15px;
-    border-radius:10px;
+    padding:15px;
+    background:#fff0f6;
     border:1px solid #ffb6d5;
+    border-radius:10px;
 }
 </style>
 </head>
@@ -111,55 +104,57 @@ button{
 <body>
 
 <header>
-<h1>Agent Factory – Getting Started Portal</h1>
-<p>Learn Digital FTEs → Agent Lifecycle → Spec Driven Systems → Take Quiz</p>
+<h1>Agent Factory – Getting Started Learning System</h1>
+<p>Deep Theory + Subsections + 30 MCQ Certification Exam</p>
 </header>
 
 <div class="container">
 
-<!-- THEORY SECTION -->
-<h2>💡 Core Concepts (Click to Open)</h2>
+<h2>📚 Learning Modules (Click for Detailed View)</h2>
 
 <div class="grid">
 
-<div class="card" onclick="openModal('Digital FTEs','Digital Full-Time Equivalents are AI workers that operate 24/7, turning domain expertise into scalable automated systems.')">
-Digital FTEs
-</div>
-
-<div class="card" onclick="openModal('Agent Factory Paradigm','A shift from writing software to manufacturing AI employees that execute structured knowledge work.')">
+<div class="card" onclick="openModal('Agent Factory Paradigm','Agent Factory replaces traditional software thinking with AI workers (Digital FTEs). Instead of building apps, we build autonomous systems that perform knowledge work. It shifts software → workforce.')">
 Agent Factory Paradigm
 </div>
 
-<div class="card" onclick="openModal('Spec-Driven Development','Systems are built from structured specifications that both humans and AI can execute reliably.')">
-Spec Driven Development
+<div class="card" onclick="openModal('Digital FTEs','Digital Full-Time Equivalents are AI agents that work 24/7. They replicate human job roles using structured prompts, memory, tools, and workflows.')">
+Digital FTEs
 </div>
 
-<div class="card" onclick="openModal('AI Development Spectrum','AI-Assisted → AI-Driven → AI-Native. The maturity ladder of modern AI engineering.')">
+<div class="card" onclick="openModal('AI Development Spectrum','Three stages: AI-Assisted (tools), AI-Driven (automation), AI-Native (AI as core infrastructure). Each stage increases autonomy.')">
 AI Development Spectrum
 </div>
 
-<div class="card" onclick="openModal('Training an Agent','Step-by-step process: create agent → define instructions → upload knowledge → execute tasks → iterate.')">
-Training Agents
+<div class="card" onclick="openModal('Spec Driven Development','Instead of coding everything manually, systems are defined using structured specifications that AI can interpret and execute reliably.')">
+Spec Driven Development
 </div>
 
-<div class="card" onclick="openModal('AI-Native Organizations','Organizations where AI is not a tool but the core operating system of all workflows.')">
-AI Native Org
-</div>
-
-<div class="card" onclick="openModal('Agent Execution Loop','Define → Execute → Verify → Improve. Human supervises, AI executes.')">
+<div class="card" onclick="openModal('Agent Execution Loop','Core loop: Define → Execute → Verify → Improve. This ensures continuous refinement and stability in agent behavior.')">
 Execution Loop
 </div>
 
-<div class="card" onclick="openModal('Monetization of Agents','Digital FTEs can be sold as subscriptions, licenses, or outcome-based services.')">
+<div class="card" onclick="openModal('Memory Systems','Memory enables persistence across sessions, allowing agents to learn, adapt, and build long-term intelligence.')">
+Memory Systems
+</div>
+
+<div class="card" onclick="openModal('Context Engineering','Controls what information is injected into the model. Better context leads to better reasoning, accuracy, and output quality.')">
+Context Engineering
+</div>
+
+<div class="card" onclick="openModal('Monetization Models','Agents can be monetized via SaaS subscriptions, per-task pricing, enterprise licensing, or outcome-based pricing.')">
 Monetization
+</div>
+
+<div class="card" onclick="openModal('AI-Native Organizations','Organizations where AI systems form the backbone of operations, replacing traditional human-heavy workflows.')">
+AI Native Orgs
 </div>
 
 </div>
 
 <hr>
 
-<!-- QUIZ -->
-<h2>📝 MCQ Exam (Getting Started)</h2>
+<h2>📝 30 MCQ Certification Exam</h2>
 
 <div id="quiz"></div>
 
@@ -190,24 +185,45 @@ function closeModal(){
     document.getElementById("modal").style.display="none";
 }
 
-/* QUESTIONS (BASED ON GETTING STARTED THEMES) */
+/* 30 MCQs */
 const questions = [
-["What is a Digital FTE?","Human employee","AI worker system","Database","UI framework","B"],
-["Agent Factory focuses on?","Games","AI employees","Websites","OS design","B"],
-["Spec-driven means?","Random coding","Structured instructions","No planning","Manual only","B"],
-["AI-Native means?","AI optional","AI core system","No AI","Hardware only","B"],
-["Agent training includes?","Guessing","Instruction + data","Only UI","Only API","B"],
-["AI spectrum starts with?","AI Native","AI Assisted","AI Driven","AI OS","B"],
-["Execution loop is?","Build once","Define→Execute→Verify","Random flow","Skip verify","B"],
-["Monetization includes?","Free only","Subscriptions","No revenue","Ads only","B"],
-["Digital FTE works?","8 hours","24/7","Offline","Manual only","B"],
-["Agent output is?","Static","Reusable system","Random text","Image only","B"]
+["What is Agent Factory?","Traditional software","AI workforce system","Database","UI framework","B"],
+["Digital FTE means?","Human worker","AI worker","Server","API","B"],
+["AI Native means?","AI optional","AI core","No AI","Manual system","B"],
+["Spec-driven uses?","Random code","Structured specs","Guessing","UI only","B"],
+["Execution loop is?","Random","Define→Execute→Verify→Improve","Stop system","Skip verify","B"],
+["Memory enables?","Loss","Continuity","Noise","Delay","B"],
+["Context engineering manages?","GPU","Information flow","Hardware","UI","B"],
+["Monetization includes?","Free only","Subscriptions","No value","Manual","B"],
+["AI spectrum starts with?","AI Native","AI Assisted","AI OS","AI Cloud","B"],
+["Agents are?","Static apps","Dynamic systems","Files","Images","B"],
+["FTE works?","8 hours","24/7","Offline","Manual","B"],
+["Spec replaces?","Structure","Guessing","Randomness","UI","B"],
+["Evaluation improves?","Failure","Quality","Noise","Delay","B"],
+["Factory output is?","Chat","Systems","Images","Logs","B"],
+["Stable system is?","Random","Predictable","Broken","Slow","B"],
+["Not part of system?","Memory","Context","Guessing","Evaluation","C"],
+["Reusable asset means?","Waste","Growth","Error","Delay","B"],
+["Execution layer is?","Runtime","UI","Memory","Storage","A"],
+["AI Native org uses?","Manual","AI core","Paper","Excel","B"],
+["Best outcome?","System","Random","Noise","Failure","A"],
+
+["Agent learns via?","Feedback","Noise","Random","Error","A"],
+["Context improves?","Accuracy","Confusion","Delay","Loss","A"],
+["Memory type is?","Structured","Random","Deleted","Hidden","A"],
+["Monetization type?","Subscription","Free","Loss","Spam","A"],
+["Execution cycle?","Loop","Break","Stop","Reset","A"],
+["Agent goal?","Automation","Manual work","Chat only","UI","A"],
+["Spec benefit?","Clarity","Chaos","Noise","Delay","A"],
+["AI replaces?","Workflows","Nothing","UI","CSS","A"],
+["Factory mindset?","Reuse","Waste","Random","Chaos","A"],
+["Learning system?","Iterative","Static","Broken","Manual","A"]
 ];
 
-let qbox=document.getElementById("quiz");
+let quiz=document.getElementById("quiz");
 
 questions.forEach((q,i)=>{
-qbox.innerHTML+=`
+quiz.innerHTML+=`
 <div class="question">
 <b>${i+1}. ${q[0]}</b><br><br>
 <label><input type="radio" name="q${i}" value="A"> ${q[1]}</label><br>
@@ -228,8 +244,8 @@ if(sel && sel.value===q[5]) score++;
 
 document.getElementById("result").innerHTML=
 `<div class="result">
-Score: ${score}/${questions.length}<br>
-${score>=7?"🎉 PASS":"❌ FAIL"}
+Score: ${score}/30<br>
+${score>=21?"🎉 PASS":"❌ FAIL"}
 </div>`;
 }
 
