@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Agent Factory – Getting Started Portal</title>
+<title>Agent Factory – Getting Started (Review Enabled)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -10,13 +10,12 @@ body{
     margin:0;
     font-family:Segoe UI;
     background:linear-gradient(135deg,#ffe4f1,#f7f7f7);
-    color:#222;
 }
 
 /* HEADER */
 header{
     background:linear-gradient(135deg,#ffb6d5,#c0c0c0);
-    padding:35px;
+    padding:30px;
     text-align:center;
 }
 
@@ -28,51 +27,7 @@ header{
     padding:20px;
 }
 
-/* THEORY GRID */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:15px;
-}
-
-.card{
-    background:rgba(255,255,255,0.85);
-    border:1px solid #ddd;
-    border-radius:14px;
-    padding:15px;
-    cursor:pointer;
-    box-shadow:0 8px 18px rgba(0,0,0,0.08);
-    transition:0.25s;
-}
-.card:hover{transform:scale(1.03);}
-
-/* MODAL */
-.modal{
-    display:none;
-    position:fixed;
-    top:0;left:0;
-    width:100%;height:100%;
-    background:rgba(0,0,0,0.55);
-    justify-content:center;
-    align-items:center;
-}
-
-.modal-content{
-    background:white;
-    width:75%;
-    max-height:80vh;
-    overflow:auto;
-    padding:25px;
-    border-radius:15px;
-}
-
-.close{
-    float:right;
-    cursor:pointer;
-    font-size:22px;
-}
-
-/* QUIZ */
+/* QUESTION */
 .question{
     background:white;
     padding:15px;
@@ -81,6 +36,7 @@ header{
     border-radius:10px;
 }
 
+/* BUTTON */
 button{
     background:#ff69b4;
     color:white;
@@ -91,12 +47,32 @@ button{
     margin-top:15px;
 }
 
+/* RESULT */
 .result{
-    margin-top:15px;
+    margin-top:20px;
     padding:15px;
     background:#fff0f6;
     border:1px solid #ffb6d5;
     border-radius:10px;
+}
+
+/* REVIEW BOX */
+.review{
+    margin-top:20px;
+    padding:15px;
+    background:white;
+    border-radius:10px;
+    border:1px solid #ddd;
+}
+
+.correct{
+    color:green;
+    font-weight:bold;
+}
+
+.wrong{
+    color:red;
+    font-weight:bold;
 }
 </style>
 </head>
@@ -104,86 +80,24 @@ button{
 <body>
 
 <header>
-<h1>Agent Factory – Getting Started Learning System</h1>
-<p>Deep Theory + Subsections + 30 MCQ Certification Exam</p>
+<h1>Agent Factory – Getting Started</h1>
+<p>MCQ Exam with Instant Review + Correct Answer Fixing</p>
 </header>
 
 <div class="container">
 
-<h2>📚 Learning Modules (Click for Detailed View)</h2>
-
-<div class="grid">
-
-<div class="card" onclick="openModal('Agent Factory Paradigm','Agent Factory replaces traditional software thinking with AI workers (Digital FTEs). Instead of building apps, we build autonomous systems that perform knowledge work. It shifts software → workforce.')">
-Agent Factory Paradigm
-</div>
-
-<div class="card" onclick="openModal('Digital FTEs','Digital Full-Time Equivalents are AI agents that work 24/7. They replicate human job roles using structured prompts, memory, tools, and workflows.')">
-Digital FTEs
-</div>
-
-<div class="card" onclick="openModal('AI Development Spectrum','Three stages: AI-Assisted (tools), AI-Driven (automation), AI-Native (AI as core infrastructure). Each stage increases autonomy.')">
-AI Development Spectrum
-</div>
-
-<div class="card" onclick="openModal('Spec Driven Development','Instead of coding everything manually, systems are defined using structured specifications that AI can interpret and execute reliably.')">
-Spec Driven Development
-</div>
-
-<div class="card" onclick="openModal('Agent Execution Loop','Core loop: Define → Execute → Verify → Improve. This ensures continuous refinement and stability in agent behavior.')">
-Execution Loop
-</div>
-
-<div class="card" onclick="openModal('Memory Systems','Memory enables persistence across sessions, allowing agents to learn, adapt, and build long-term intelligence.')">
-Memory Systems
-</div>
-
-<div class="card" onclick="openModal('Context Engineering','Controls what information is injected into the model. Better context leads to better reasoning, accuracy, and output quality.')">
-Context Engineering
-</div>
-
-<div class="card" onclick="openModal('Monetization Models','Agents can be monetized via SaaS subscriptions, per-task pricing, enterprise licensing, or outcome-based pricing.')">
-Monetization
-</div>
-
-<div class="card" onclick="openModal('AI-Native Organizations','Organizations where AI systems form the backbone of operations, replacing traditional human-heavy workflows.')">
-AI Native Orgs
-</div>
-
-</div>
-
-<hr>
-
-<h2>📝 30 MCQ Certification Exam</h2>
+<h2>📝 30 MCQ Exam</h2>
 
 <div id="quiz"></div>
 
 <button onclick="submitQuiz()">Submit Exam</button>
 
 <div id="result"></div>
+<div id="review"></div>
 
-</div>
-
-<!-- MODAL -->
-<div id="modal" class="modal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">✖</span>
-<h2 id="mTitle"></h2>
-<p id="mText"></p>
-</div>
 </div>
 
 <script>
-
-/* MODAL */
-function openModal(t,x){
-    document.getElementById("modal").style.display="flex";
-    document.getElementById("mTitle").innerText=t;
-    document.getElementById("mText").innerText=x;
-}
-function closeModal(){
-    document.getElementById("modal").style.display="none";
-}
 
 /* 30 MCQs */
 const questions = [
@@ -234,12 +148,30 @@ quiz.innerHTML+=`
 `;
 });
 
+/* SUBMIT + REVIEW ENGINE */
 function submitQuiz(){
 let score=0;
+let reviewHTML="";
 
 questions.forEach((q,i)=>{
-let sel=document.querySelector(`input[name=q${i}]:checked`);
-if(sel && sel.value===q[5]) score++;
+
+let selected=document.querySelector(`input[name=q${i}]:checked`);
+let userAns = selected ? selected.value : "Not Answered";
+let correct = q[5];
+
+if(userAns === correct){
+score++;
+} else {
+
+reviewHTML += `
+<div class="review">
+<b>Q${i+1}: ${q[0]}</b><br>
+❌ Your Answer: <span class="wrong">${userAns}</span><br>
+✔ Correct Answer: <span class="correct">${correct}</span>
+</div>
+`;
+}
+
 });
 
 document.getElementById("result").innerHTML=
@@ -247,6 +179,8 @@ document.getElementById("result").innerHTML=
 Score: ${score}/30<br>
 ${score>=21?"🎉 PASS":"❌ FAIL"}
 </div>`;
+
+document.getElementById("review").innerHTML=reviewHTML;
 }
 
 </script>
