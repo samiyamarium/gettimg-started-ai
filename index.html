@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Agent Factory – Getting Started (Review Enabled)</title>
+<title>Agent Factory – Getting Started Complete Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -10,6 +10,7 @@ body{
     margin:0;
     font-family:Segoe UI;
     background:linear-gradient(135deg,#ffe4f1,#f7f7f7);
+    color:#222;
 }
 
 /* HEADER */
@@ -19,7 +20,7 @@ header{
     text-align:center;
 }
 
-/* LAYOUT */
+/* CONTAINER */
 .container{
     width:92%;
     max-width:1200px;
@@ -27,7 +28,51 @@ header{
     padding:20px;
 }
 
-/* QUESTION */
+/* THEORY GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:15px;
+}
+
+.card{
+    background:rgba(255,255,255,0.85);
+    border:1px solid #ddd;
+    border-radius:14px;
+    padding:15px;
+    cursor:pointer;
+    box-shadow:0 8px 18px rgba(0,0,0,0.08);
+    transition:0.25s;
+}
+.card:hover{transform:scale(1.03);}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.55);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:white;
+    width:75%;
+    max-height:80vh;
+    overflow:auto;
+    padding:25px;
+    border-radius:15px;
+}
+
+.close{
+    float:right;
+    cursor:pointer;
+    font-size:22px;
+}
+
+/* QUIZ */
 .question{
     background:white;
     padding:15px;
@@ -56,37 +101,85 @@ button{
     border-radius:10px;
 }
 
-/* REVIEW BOX */
+/* REVIEW */
 .review{
-    margin-top:20px;
-    padding:15px;
+    margin-top:15px;
+    padding:12px;
     background:white;
     border-radius:10px;
     border:1px solid #ddd;
 }
 
-.correct{
-    color:green;
-    font-weight:bold;
-}
-
-.wrong{
-    color:red;
-    font-weight:bold;
-}
+.correct{color:green;font-weight:bold;}
+.wrong{color:red;font-weight:bold;}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>Agent Factory – Getting Started</h1>
-<p>MCQ Exam with Instant Review + Correct Answer Fixing</p>
+<h1>Agent Factory – Getting Started Portal</h1>
+<p>Theory + Popups + 30 MCQ Certification + Answer Review</p>
 </header>
 
 <div class="container">
 
-<h2>📝 30 MCQ Exam</h2>
+<!-- ================= THEORY ================= -->
+<h2>📚 Core Concepts (Click for Detailed Popup)</h2>
+
+<div class="grid">
+
+<div class="card" onclick="openModal('Agent Factory Paradigm',
+'Agent Factory shifts software engineering into AI workforce engineering. Instead of building apps, we build autonomous AI agents that perform structured knowledge work continuously.')">
+Agent Factory Paradigm
+</div>
+
+<div class="card" onclick="openModal('Digital FTEs',
+'Digital Full-Time Equivalents are AI workers operating 24/7. They replicate human job roles using memory, tools, context, and execution loops.')">
+Digital FTEs
+</div>
+
+<div class="card" onclick="openModal('AI Development Spectrum',
+'AI Assisted → AI Driven → AI Native. This represents increasing autonomy where AI moves from helper to core operating system.')">
+AI Development Spectrum
+</div>
+
+<div class="card" onclick="openModal('Spec Driven Development',
+'Systems are defined using structured specifications that both humans and AI can execute reliably without ambiguity.')">
+Spec Driven Development
+</div>
+
+<div class="card" onclick="openModal('Execution Loop',
+'Define → Execute → Verify → Improve. This loop ensures continuous learning and stable agent behavior.')">
+Execution Loop
+</div>
+
+<div class="card" onclick="openModal('Memory Systems',
+'Memory allows agents to persist knowledge across sessions, enabling learning, adaptation, and continuity.')">
+Memory Systems
+</div>
+
+<div class="card" onclick="openModal('Context Engineering',
+'Controls what information enters the model. High-quality context improves reasoning accuracy and output reliability.')">
+Context Engineering
+</div>
+
+<div class="card" onclick="openModal('Monetization',
+'Agents can be monetized via SaaS, subscriptions, per-task billing, or outcome-based pricing models.')">
+Monetization
+</div>
+
+<div class="card" onclick="openModal('AI Native Organizations',
+'Organizations where AI systems form the core operational layer replacing traditional manual workflows.')">
+AI Native Orgs
+</div>
+
+</div>
+
+<hr>
+
+<!-- ================= QUIZ ================= -->
+<h2>📝 30 MCQ Certification Exam</h2>
 
 <div id="quiz"></div>
 
@@ -97,9 +190,28 @@ button{
 
 </div>
 
+<!-- MODAL -->
+<div id="modal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeModal()">✖</span>
+<h2 id="mTitle"></h2>
+<p id="mText"></p>
+</div>
+</div>
+
 <script>
 
-/* 30 MCQs */
+/* MODAL */
+function openModal(t,x){
+    document.getElementById("modal").style.display="flex";
+    document.getElementById("mTitle").innerText=t;
+    document.getElementById("mText").innerText=x;
+}
+function closeModal(){
+    document.getElementById("modal").style.display="none";
+}
+
+/* ================= 30 MCQS ================= */
 const questions = [
 ["What is Agent Factory?","Traditional software","AI workforce system","Database","UI framework","B"],
 ["Digital FTE means?","Human worker","AI worker","Server","API","B"],
@@ -111,6 +223,7 @@ const questions = [
 ["Monetization includes?","Free only","Subscriptions","No value","Manual","B"],
 ["AI spectrum starts with?","AI Native","AI Assisted","AI OS","AI Cloud","B"],
 ["Agents are?","Static apps","Dynamic systems","Files","Images","B"],
+
 ["FTE works?","8 hours","24/7","Offline","Manual","B"],
 ["Spec replaces?","Structure","Guessing","Randomness","UI","B"],
 ["Evaluation improves?","Failure","Quality","Noise","Delay","B"],
@@ -148,30 +261,27 @@ quiz.innerHTML+=`
 `;
 });
 
-/* SUBMIT + REVIEW ENGINE */
+/* ================= REVIEW SYSTEM ================= */
 function submitQuiz(){
 let score=0;
 let reviewHTML="";
 
 questions.forEach((q,i)=>{
+let sel=document.querySelector(`input[name=q${i}]:checked`);
+let user= sel ? sel.value : "Not Answered";
+let correct=q[5];
 
-let selected=document.querySelector(`input[name=q${i}]:checked`);
-let userAns = selected ? selected.value : "Not Answered";
-let correct = q[5];
-
-if(userAns === correct){
+if(user===correct){
 score++;
 } else {
-
-reviewHTML += `
+reviewHTML+=`
 <div class="review">
 <b>Q${i+1}: ${q[0]}</b><br>
-❌ Your Answer: <span class="wrong">${userAns}</span><br>
+❌ Your Answer: <span class="wrong">${user}</span><br>
 ✔ Correct Answer: <span class="correct">${correct}</span>
 </div>
 `;
 }
-
 });
 
 document.getElementById("result").innerHTML=
